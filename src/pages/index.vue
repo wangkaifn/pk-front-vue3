@@ -1,38 +1,22 @@
 <template>
   <div>
-    <h1>首页</h1>
-    <ReloadPrompt />
+    <Swiper :items="items" height="h-120" @change="onSlideChange"></Swiper>
   </div>
 </template>
 
 <script setup lang="ts">
-import { registerSW } from 'virtual:pwa-register';
+import bg from '@/assets/images/bg.png'
+import type { SwiperItemType } from '@/components/types'
+import type Swiper from 'swiper'
+const items: SwiperItemType[] = [
+  { image: bg, title: '传播技术种子', subTitle: '让技术种子发芽' },
+  { image: bg },
+  { image: bg },
+]
 
-onMounted(() => {
-  /**
-   * 注册一个服务工作者并为其生命周期事件设置事件处理程序。
-   * @param {Object} options - 注册服务工作者的选项。
-   * @param {Function} options.onNeedRefresh - 当有新的服务工作者可用且需要激活时调用的回调函数。
-   * @param {Function} options.onRegisteredSW - 成功注册服务工作者时调用的回调函数。
-   * @param {string} options.onRegisteredSW.swScriptUrl - 已注册服务工作者脚本的URL。
-   * @param {ServiceWorkerRegistration} options.onRegisteredSW.swRegistration - 与已注册服务工作者关联的ServiceWorkerRegistration对象。
-   */
-  registerSW({
-    onNeedRefresh() {
-      console.log('onNeedRefresh');
-    },
-    onRegisteredSW(swScriptUrl, swRegistration) {
-      setInterval(() => {
-        if (swRegistration) {
-          swRegistration.update();
-        }
-        console.log('onRegisteredSW', swScriptUrl, swRegistration);
-      }, 5000);
-    },
-  });
-});
-
-
+const onSlideChange = (e: Swiper) => {
+  console.log('slide change', e)
+}
 </script>
 
 <style scoped></style>

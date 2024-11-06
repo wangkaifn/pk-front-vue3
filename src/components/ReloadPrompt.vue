@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 
-const {
-  offlineReady,
-  needRefresh,
-  updateServiceWorker,
-} = useRegisterSW()
+const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW()
 
 async function close() {
   offlineReady.value = false
@@ -16,19 +12,13 @@ async function close() {
 <template>
   <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
     <div class="message">
-      <span v-if="offlineReady">
-        应用已准备好离线工作
-      </span>
-      <span v-else>
-        有新内容可用，点击重新加载按钮进行更新。
-      </span>
+      <span v-if="offlineReady"> 应用已准备好离线工作 </span>
+      <span v-else> 有新内容可用，点击重新加载按钮进行更新。 </span>
     </div>
     <ElButton v-if="needRefresh" @click="updateServiceWorker()">
       重新加载
     </ElButton>
-    <ElButton @click="close">
-      关闭
-    </ElButton>
+    <ElButton @click="close"> 关闭 </ElButton>
   </div>
 </template>
 
@@ -51,3 +41,29 @@ async function close() {
   margin-bottom: 8px;
 }
 </style>
+
+<!-- import { registerSW } from 'virtual:pwa-register'
+
+onMounted(() => {
+  /**
+   * 注册一个服务工作者并为其生命周期事件设置事件处理程序。
+   * @param {Object} options - 注册服务工作者的选项。
+   * @param {Function} options.onNeedRefresh - 当有新的服务工作者可用且需要激活时调用的回调函数。
+   * @param {Function} options.onRegisteredSW - 成功注册服务工作者时调用的回调函数。
+   * @param {string} options.onRegisteredSW.swScriptUrl - 已注册服务工作者脚本的URL。
+   * @param {ServiceWorkerRegistration} options.onRegisteredSW.swRegistration - 与已注册服务工作者关联的ServiceWorkerRegistration对象。
+   */
+  registerSW({
+    onNeedRefresh() {
+      console.log('onNeedRefresh')
+    },
+    onRegisteredSW(swScriptUrl, swRegistration) {
+      setInterval(() => {
+        if (swRegistration) {
+          swRegistration.update()
+        }
+        console.log('onRegisteredSW', swScriptUrl, swRegistration)
+      }, 5000)
+    },
+  })
+}) -->

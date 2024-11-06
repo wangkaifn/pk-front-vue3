@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 w-full"
+    class="fixed top-0 w-full z-10"
     :class="{
       'bg-black bg-opacity-30 shadow-md': y > 0,
     }"
@@ -10,7 +10,6 @@
       <Menu />
     </Container>
   </div>
-  <div class="h-[2000px]"></div>
   <RouterView />
 </template>
 
