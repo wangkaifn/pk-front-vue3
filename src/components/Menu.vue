@@ -1,5 +1,5 @@
 <template>
-  <div class="flex bg-gray-5">
+  <div class="flex">
     <router-link to="/" class="item">主页</router-link>
     <a
       href="http://www.baidu.com"
@@ -17,12 +17,12 @@
 
 <style scoped lang="scss">
 .item {
-  @apply text-white text-xl font-200 py-2 px-8 cursor-pointer transition-all duration-300 relative;
+  @apply text-white text-lg font-300 py-2 px-8 cursor-pointer transition-all duration-300 relative;
   &:hover {
     @apply font-400;
     &::after {
       content: '';
-      @apply absolute bg-gray-100 w-8 h-[2px] bottom-0;
+      @apply absolute bg-gray-100 w-8 h-[1px] bottom-0;
       left: calc(50% - 1rem);
     }
   }
