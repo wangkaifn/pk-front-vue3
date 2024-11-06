@@ -10,7 +10,8 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "typescript.preferences.autoImportFileExcludePatterns": [
-    "vue-router$"
-  ]
+  "typescript.preferences.autoImportFileExcludePatterns": ["vue-router$"],
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

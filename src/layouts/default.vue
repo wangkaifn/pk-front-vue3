@@ -1,8 +1,7 @@
 <template>
-  <div>
-    default layout
-    <RouterView />
-  </div>
+  <Menu />
+
+  <RouterView />
 </template>
 
 <script setup lang="ts"></script>
